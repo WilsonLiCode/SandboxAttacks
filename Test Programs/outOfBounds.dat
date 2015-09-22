@@ -1,0 +1,8 @@
+#try to set array at index MAX_STORAGE_SIZE
+#crash with out of bounds exception
+#bug: code checks for array index <= MAX_STORAGE_SIZE 
+#instead of array index < MAX_STORAGE_SIZE
+
+SET,2001,1
+
+HALT
